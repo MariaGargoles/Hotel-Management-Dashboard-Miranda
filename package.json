@@ -1,7 +1,9 @@
 {
-  "name": "vite-project",
+  "name": "dashboard-miranda",
   "private": true,
-  "version": "0.0.0",
+  "version": "1.0.0",
+  "description": "Sistema de gestión hotelera completo con React, TypeScript y Redux",
+  "author": "Dashboard Miranda Team",
   "type": "module",
   "scripts": {
     "dev": "vite",

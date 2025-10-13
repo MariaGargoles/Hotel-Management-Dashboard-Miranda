@@ -1,5 +1,4 @@
 import React, { useState, useContext } from "react";
-import "./NavbarComponent.css";
 import { TfiAlignLeft } from "react-icons/tfi";
 import { IoIosSearch } from "react-icons/io";
 import { IoMdHeartEmpty } from "react-icons/io";
@@ -11,7 +10,9 @@ import { LuCalendarCheck2 } from "react-icons/lu";
 import { MdOutlinePersonOutline } from "react-icons/md";
 import { MdContactPhone } from "react-icons/md";
 import { HiLogin } from "react-icons/hi";
+import { FaHotel } from "react-icons/fa";
 import { useNavigate } from "react-router-dom";
+import { ROUTES, APP_NAME } from "../../utils/constants";
 
 
 
@@ -72,38 +73,61 @@ export const NavbarComponent: React.FC = () => {
         <>
             <NavbarSection>
                 <IconsSection>
-                    <LogoMenu src="src/assets/Logo.png" alt="Logo" />
-                    <LogoText src="src/assets/Trav.png" alt="trav" />
+                    <FaHotel style={{ fontSize: '2.5rem', color: '#135846', marginLeft: '1rem' }} />
+                    <LogoText style={{ 
+                        fontFamily: 'Poppins, sans-serif',
+                        fontSize: '1.5rem',
+                        fontWeight: 'bold',
+                        color: '#135846',
+                        paddingLeft: '1rem',
+                        display: 'flex',
+                        alignItems: 'center'
+                    }}>
+                        {APP_NAME}
+                    </LogoText>
                 </IconsSection>
                 {openMenu &&  
                 <MenuSection>
                     <UlMenu>
-                        <NavLink to="/dashboard" className="dashboardlink list-link">
+                        <NavLink to={ROUTES.DASHBOARD} className="dashboardlink list-link">
                             <ListMenu><MdDashboard className="menuicon"/>Dashboard</ListMenu>
                         </NavLink>
-                        <NavLink to="/rooms" className="roomslink list-link">
-                            <ListMenu><PiKeyBold className="menuicon"/>Rooms</ListMenu>
+                        <NavLink to={ROUTES.ROOMS} className="roomslink list-link">
+                            <ListMenu><PiKeyBold className="menuicon"/>Habitaciones</ListMenu>
                         </NavLink>
-                        <NavLink to="/booking" className="bookinlink list-link">
-                            <ListMenu><LuCalendarCheck2 className="menuicon"/>Bookings</ListMenu>
+                        <NavLink to={ROUTES.BOOKING} className="bookinlink list-link">
+                            <ListMenu><LuCalendarCheck2 className="menuicon"/>Reservas</ListMenu>
                         </NavLink>
-                        <NavLink to="/users" className="list-link">
-                            <ListMenu><MdOutlinePersonOutline className="menuicon"/>Users</ListMenu>
+                        <NavLink to={ROUTES.USERS} className="list-link">
+                            <ListMenu><MdOutlinePersonOutline className="menuicon"/>Usuarios</ListMenu>
                         </NavLink>
-                        <NavLink to="/contact" className="list-link">
-                            <ListMenu><MdContactPhone className="menuicon"/>Contact</ListMenu>
+                        <NavLink to={ROUTES.CONTACT} className="list-link">
+                            <ListMenu><MdContactPhone className="menuicon"/>Contacto</ListMenu>
                         </NavLink>
                     </UlMenu>
                     <PersonCard>
-                        <PersonImg src="src/assets/1.jpg" alt="Person" />
+                        <PersonImg style={{ 
+                            width: '4rem', 
+                            height: '4rem', 
+                            margin: '0 auto',
+                            backgroundColor: '#135846',
+                            display: 'flex',
+                            alignItems: 'center',
+                            justifyContent: 'center',
+                            color: 'white',
+                            fontSize: '1.5rem',
+                            fontWeight: 'bold'
+                        }}>
+                            {state.name ? state.name.charAt(0).toUpperCase() : 'A'}
+                        </PersonImg>
                         <PersonName>{state.name}</PersonName> 
                         <PersonEmail>{state.email}</PersonEmail>
-                        <PersonButton onClick={handleEditUserClick}>Edit User</PersonButton>
+                        <PersonButton onClick={handleEditUserClick}>Editar Usuario</PersonButton>
                     </PersonCard>
                     
                     <NavFooter>
-                        <NavCopy>Travl Hotel Admin Dashboard</NavCopy>
-                        <NavRights>© 2024</NavRights>
+                        <NavCopy>{APP_NAME}</NavCopy>
+                        <NavRights>© {new Date().getFullYear()}</NavRights>
                     </NavFooter>
                 </MenuSection>}
                 <IconContainer isOpen={openMenu} className="displaymenu" onClick={handleClick}>
@@ -121,8 +145,8 @@ export const NavbarComponent: React.FC = () => {
                 <IconContainer>
                     <TbMessage className="menuicon" />
                 </IconContainer>
-                <IconContainer>
-                    <HiLogin className="menuicon" onClick={handleLogoutClick} />
+                <IconContainer onClick={handleLogoutClick} title="Cerrar sesión">
+                    <HiLogin className="menuicon" />
                 </IconContainer>
             </NavbarSection>
             {isPopupOpen && <PopupUserComponent onClose={handleClosePopup} isOpen={isPopupOpen} editUser={updateUser} user={state} />}

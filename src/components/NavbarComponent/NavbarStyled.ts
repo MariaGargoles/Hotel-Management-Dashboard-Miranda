@@ -18,11 +18,12 @@ export const LogoMenu = styled.img`
   background-color: #ffff;
 `;
 
-export const LogoText = styled.img`
+export const LogoText = styled.div`
   padding-left: 1rem;
-  width: 11rem;
-  height: 5rem;
   background-color: #ffff;
+  display: flex;
+  align-items: center;
+  height: 5rem;
 `;
 
 export const IconsSection = styled.div`
@@ -65,11 +66,15 @@ export const PersonCard = styled.div`
   margin-top: 5rem;
 `;
 
-export const PersonImg = styled.img`
+export const PersonImg = styled.div`
   border-radius: 50%;
-  width: 6rem;
-  height: 7rem;
-  background-color: #ffff;
+  width: 4rem;
+  height: 4rem;
+  background-color: #135846;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 auto;
 `;
 
 export const PersonName = styled.h4`

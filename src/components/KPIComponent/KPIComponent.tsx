@@ -2,7 +2,7 @@ import { IoBedOutline } from "react-icons/io5";
 import { LuCalendarCheck2 } from "react-icons/lu";
 import { IoIosLogIn, IoIosLogOut  } from "react-icons/io";
 import { KPISection, KPICard, KPICardText, KPITitle, KPIText} from "./KPIStyled";
-import "./KPIsComponent.css";
+
 
 export const KPIComponent = () => {
 

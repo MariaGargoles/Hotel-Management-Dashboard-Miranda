@@ -6,7 +6,7 @@ import { Navigation } from 'swiper/modules';
 import { FaRegCheckCircle } from "react-icons/fa";
 import { GiCancel } from "react-icons/gi";
 import { ReviewSection, ReviewSectionTitle, ReviewCard, ReviewCardText, ReviewPersonCard, ReviewInnerContainer, ReviewImage, ReviewName, ReviewTime  } from './ReviewsStyled';
-import "./ReviewsComponent.css"
+
 
 export const ReviewsComponent = () => {
   

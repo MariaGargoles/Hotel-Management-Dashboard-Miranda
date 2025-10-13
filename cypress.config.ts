@@ -1,10 +1,8 @@
 import { defineConfig } from "cypress";
 
 export default defineConfig({
-  projectId: 'nv41qi',
   e2e: {
-    setupNodeEvents(on, config) {
-      // implement node event listeners here
-    },
+    baseUrl: "http://dashboard-miranda-mgl.s3-website.eu-west-3.amazonaws.com",
+    specPattern: "cypress/e2e/**/*.cy.{js,jsx,ts,tsx}",
   },
 });

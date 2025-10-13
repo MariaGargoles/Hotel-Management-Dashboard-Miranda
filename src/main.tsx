@@ -13,6 +13,10 @@ import { Provider } from 'react-redux';
 import { store } from "./app/store.js"
 import { NewRoomPage } from './pages/Room/NewRoom.js';
 import { NewBookin } from './components/BookingComponent/NewbookinComponent.js';
+import { MainLayout } from './layouts/MainLayout.js';
+import { GlobalStyles } from './styles/GlobalStyles.js';
+import { ErrorBoundary } from './components/ErrorBoundary/ErrorBoundary.js';
+import { NotFoundPage } from './pages/NotFound/NotFound.js';
 
 const rootElement = document.getElementById('root');
 if (!rootElement) {
@@ -21,70 +25,36 @@ if (!rootElement) {
 
 ReactDOM.createRoot(rootElement).render(
   <React.StrictMode>
-    <Provider store={store}>
-      <AuthProvider>
-        <BrowserRouter>
-          <Routes>
-            <Route path="/" element={<IndexPage />} />
-            <Route
-              path="/dashboard"
-              element={
+    <ErrorBoundary>
+      <Provider store={store}>
+        <AuthProvider>
+          <GlobalStyles />
+          <BrowserRouter>
+            <Routes>
+              {/* Ruta pública de login */}
+              <Route path="/" element={<IndexPage />} />
+              
+              {/* Rutas protegidas con Layout */}
+              <Route element={
                 <ProtectedRoute>
-                  <DashboardPage />
+                  <MainLayout />
                 </ProtectedRoute>
-              }
-            />
-            <Route
-              path="/contact"
-              element={
-                <ProtectedRoute>
-                  <ContactPage />
-                </ProtectedRoute>
-              }
-            />
-            <Route
-              path="/rooms"
-              element={
-                <ProtectedRoute>
-                  <RoomPage />
-                </ProtectedRoute>
-              }
-            />
-            <Route
-              path="/rooms/NewRoom"
-              element={
-                <ProtectedRoute>
-                  <NewRoomPage />
-                </ProtectedRoute>
-              }
-            />
-            <Route
-              path="/booking"
-              element={
-                <ProtectedRoute>
-                  <BookingPage />
-                </ProtectedRoute>
-              }
-            />
-            <Route
-              path="/booking/NewBookin"
-              element={
-                <ProtectedRoute>
-                  <NewBookin />
-                </ProtectedRoute>
-              }
-            />
-            <Route
-              path="/users"
-              element={
-                <ProtectedRoute>
-                  <UserPage />
-                </ProtectedRoute>
-              }
-            />
+              }>
+              <Route path="/dashboard" element={<DashboardPage />} />
+              <Route path="/contact" element={<ContactPage />} />
+              <Route path="/rooms" element={<RoomPage />} />
+              <Route path="/rooms/NewRoom" element={<NewRoomPage />} />
+              <Route path="/booking" element={<BookingPage />} />
+              <Route path="/booking/NewBookin" element={<NewBookin />} />
+              <Route path="/users" element={<UserPage />} />
+            </Route>
+
+            {/* Ruta 404 */}
+            <Route path="*" element={<NotFoundPage />} />
           </Routes>
-        </BrowserRouter>
-      </AuthProvider>
-    </Provider>
+          </BrowserRouter>
+        </AuthProvider>
+      </Provider>
+    </ErrorBoundary>
   </React.StrictMode>
 );
